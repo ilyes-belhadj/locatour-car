@@ -1,0 +1,56 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+/* Style commun pour les AnchorPane */
+#AnchorPane {
+    -fx-background-color: #f5f5f5; /* Couleur d'arrière-plan */
+    -fx-padding: 20; /* Marge interne */
+}
+
+/* Style pour les labels */
+Label {
+    -fx-font-size: 18px; /* Taille de police */
+    -fx-text-fill: #333; /* Couleur du texte */
+}
+
+/* Style pour les champs de texte */
+TextField {
+    -fx-pref-width: 220; /* Largeur préférée */
+    -fx-background-color: #fff; /* Couleur d'arrière-plan */
+    -fx-border-color: #ccc; /* Couleur de la bordure */
+    -fx-border-width: 1px; /* Largeur de la bordure */
+    -fx-font-size: 16px; /* Taille de police */
+    -fx-text-fill: #555; /* Couleur du texte */
+}
+
+/* Style pour les boutons */
+Button {
+    -fx-pref-width: 140; /* Largeur préférée */
+    -fx-font-size: 16px; /* Taille de police */
+    -fx-background-color: #3498db; /* Couleur d'arrière-plan */
+    -fx-text-fill: #fff; /* Couleur du texte */
+    -fx-background-radius: 8; /* Rayon d'arrondi */
+    -fx-border-radius: 8; /* Rayon d'arrondi de la bordure */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0); /* Ombre */
+}
+
+/* Style pour les DatePicker */
+DatePicker {
+    -fx-pref-width: 220; /* Largeur préférée */
+}
+
+/* Style pour les ImageView */
+ImageView {
+    -fx-fit-width: 120; /* Largeur de l'image */
+    -fx-fit-height: 120; /* Hauteur de l'image */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0); /* Ombre */
+    
+}
+
+/* Animation au survol des boutons */
+Button:hover {
+    -fx-background-color: #2980b9; /* Changement de couleur au survol */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0); /* Ombre plus prononcée au survol */
+    -fx-transition: background-color 0.3s, text-fill 0.3s, effect 0.3s; /* Animation de transition */
+}

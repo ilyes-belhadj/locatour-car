@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="801.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DetailsController">
+   <children>
+      <Button fx:id="R" mnemonicParsing="false" onAction="#Retour" text="Retour" />
+      <ImageView fx:id="imgprofile" fitHeight="73.0" fitWidth="75.0" layoutX="206.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="marque" layoutX="269.0" layoutY="190.0" prefHeight="49.0" prefWidth="137.0">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="modele" layoutX="68.0" layoutY="191.0" prefHeight="50.0" prefWidth="149.0">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="annee" layoutX="135.0" layoutY="283.0" prefHeight="62.0" prefWidth="209.0">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Carburant" layoutX="68.0" layoutY="359.0" prefHeight="62.0" prefWidth="375.0">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Couleur" layoutX="128.0" layoutY="443.0" prefHeight="62.0" prefWidth="209.0">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Kilometrage" layoutX="126.0" layoutY="519.0" prefHeight="62.0" prefWidth="209.0">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Description" layoutX="24.0" layoutY="608.0" prefHeight="62.0" prefWidth="454.0">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Prix" layoutX="24.0" layoutY="608.0" prefHeight="62.0" prefWidth="454.0">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="mod" layoutX="63.0" layoutY="728.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
+      <Button fx:id="sup" layoutX="378.0" layoutY="730.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
+   </children>
+   <styleClass>
+      <String fx:value="fruit-item" />
+      <String fx:value="shadow" />
+   </styleClass>
+</AnchorPane>
