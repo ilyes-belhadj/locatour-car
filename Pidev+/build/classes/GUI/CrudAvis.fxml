@@ -7,20 +7,35 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="GUI.CrudAvisController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CrudAvisController">
    <children>
+      <ImageView fx:id="imageView1" fitHeight="900.0" fitWidth="1100.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../pics/car2.png" />
+         </image>
+      </ImageView>
       <Label layoutX="452.0" layoutY="34.0" text="Avis">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <Label layoutX="89.0" layoutY="112.0" text="Nom" />
-      <Label layoutX="89.0" layoutY="164.0" text="Rating" />
-      <Label layoutX="89.0" layoutY="219.0" text="Commentaire" />
+      <Label layoutX="89.0" layoutY="112.0" text="Nom" textFill="#f21616">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="89.0" layoutY="164.0" text="Rating" textFill="#f21616">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="89.0" layoutY="219.0" text="Commentaire" textFill="#f21616">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
       <ComboBox fx:id="cb_rating" layoutX="89.0" layoutY="185.0" prefWidth="150.0" />
       <TextField fx:id="et_nom" layoutX="90.0" layoutY="134.0" />
       <TextArea fx:id="et_comment" layoutX="89.0" layoutY="240.0" prefHeight="200.0" prefWidth="200.0" />

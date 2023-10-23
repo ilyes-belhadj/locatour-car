@@ -14,22 +14,25 @@ public class Reservation {
     private int idR;
     private Date datedebut;
     private Date datefin;
+    private String voiture;
     private String nom;
     private String prenom;
     private String email;
     private int numtel;
-     public Reservation(int idR, Date datedebut, Date datefin, String nom, String prenom, String email, int numtel) {
+     public Reservation(int idR, Date datedebut, Date datefin,String voiture, String nom, String prenom, String email, int numtel) {
         this.idR = idR;
         this.datedebut = datedebut;
         this.datefin = datefin;
+        this.voiture=voiture;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.numtel = numtel;
     }
- public Reservation( Date datedebut, Date datefin, String nom, String prenom, String email, int numtel) {
+ public Reservation( Date datedebut, Date datefin,String voiture, String nom,String prenom, String email, int numtel) {
         this.datedebut = datedebut;
         this.datefin = datefin;
+        this.voiture =voiture;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -63,6 +66,14 @@ public class Reservation {
         this.datefin = datefin;
     }
 
+     public String getVoiture() {
+        return voiture;
+    }
+
+    public void setVoiture(String voiture) {
+        this.voiture = voiture;
+    }
+    
     public String getNom() {
         return nom;
     }

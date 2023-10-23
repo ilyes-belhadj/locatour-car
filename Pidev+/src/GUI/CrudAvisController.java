@@ -6,6 +6,7 @@ package GUI;
 
 import Services.ServiceAvis;
 import entities.Avis;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -28,6 +29,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.StageStyle;
 
@@ -62,6 +65,8 @@ public class CrudAvisController implements Initializable {
     private TableColumn<Avis, String> col_commentaire;
     @FXML
     private Button btnback;
+    @FXML
+    private ImageView imageView1; 
 
     ObservableList<Avis> avislist = FXCollections.observableArrayList();
     
@@ -74,7 +79,9 @@ public class CrudAvisController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+         File fileLogo = new File("C:\\Users\\Asus\\Desktop\\pics\\car2.png");
+       Image logoI = new Image(fileLogo.toURI().toString());
+        imageView1.setImage(logoI);
         for (int i = 1; i <= 5; i++) {
             cb_rating.getItems().add(i);
         }
@@ -153,6 +160,7 @@ public class CrudAvisController implements Initializable {
 
             avis.setNom(nom);
             avis.setCommentaire(commentaire);
+            //hedhy
             avis.setRating(rating);
 
             if (sa.ajouterAvis(avis)) {
@@ -202,6 +210,7 @@ public class CrudAvisController implements Initializable {
                     et_nom.setText(null);
                     et_comment.setText(null);
                     et_nom.setText(null);
+                    //hedhy
                     cb_rating.setValue(1);
                     showAvis();
                 } else {
@@ -231,6 +240,7 @@ public class CrudAvisController implements Initializable {
             {
                 String nom = et_nom.getText();
                 String comentiare = et_comment.getText();
+                //hedhy
                 int rating = cb_rating.getValue();
              
 
@@ -248,6 +258,7 @@ public class CrudAvisController implements Initializable {
 
                     avis.setNom(nom);
                     avis.setCommentaire(comentiare);
+                    //hedhy
                     avis.setRating(rating);
                     
 
@@ -262,6 +273,7 @@ public class CrudAvisController implements Initializable {
                         {
                             et_nom.setText(null);
                             et_comment.setText(null);
+                            //hedhy
                             cb_rating.setValue(1);
                            
 

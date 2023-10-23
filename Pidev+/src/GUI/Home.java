@@ -25,9 +25,9 @@ public class Home extends Application {
     public void start(Stage primaryStage) {
 
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("/GUI/CrudReservation.fxml")); // list ajout affichage pour admin
+                Parent root = FXMLLoader.load(getClass().getResource("/GUI/CrudReservation.fxml")); 
                 Scene scene = new Scene(root);
-                primaryStage.setTitle("Esprit");
+                primaryStage.setTitle("Locatour Car");
                 primaryStage.setScene(scene);
                 primaryStage.show();
             } catch (IOException ex) {

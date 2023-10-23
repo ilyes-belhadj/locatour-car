@@ -6,12 +6,14 @@ package GUI;
 
 import Services.ServiceReservation;
 import entities.Reservation;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -29,11 +31,14 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.StageStyle;
 
@@ -58,6 +63,8 @@ public class CrudReservationController implements Initializable {
     private DatePicker dp_debut;
     @FXML
     private DatePicker dp_fin;
+     @FXML
+    private ComboBox<String> cb_carmodel;
     @FXML
     private TableColumn<Reservation, String> col_date_debut;
     @FXML
@@ -70,6 +77,8 @@ public class CrudReservationController implements Initializable {
     private TableColumn<Reservation, String> col_email;
     @FXML
     private TableColumn<Reservation, Integer> col_numero;
+     @FXML
+    private TableColumn<Reservation, String> col_voiture;
     @FXML
     private TableView<Reservation> table;
     @FXML
@@ -85,18 +94,30 @@ public class CrudReservationController implements Initializable {
     private Button btn_delete;
     @FXML
     private Button btnAvis;
-
+    @FXML
+    private Button btnNext;
+    private String selectedCarModel;
+     @FXML
+    private ImageView imageView0;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+         File fileLogo = new File("C:\\Users\\Asus\\Desktop\\pics\\car5.png");
+       Image logoI = new Image(fileLogo.toURI().toString());
+        imageView0.setImage(logoI); 
+        //
         showReservations();
+         //kifkif
+        loadCarModels();
+        // config
+       
+
 
         btn_edit.setDisable(true);
         btn_delete.setDisable(true);
-        
+        // hdhy
         btnAvis.setOnMouseClicked((t) -> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("CrudAvis.fxml"));
         try {
@@ -105,6 +126,16 @@ public class CrudReservationController implements Initializable {
         } catch (IOException e) {
         }
         });
+        
+         btnNext.setOnMouseClicked((t) -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CrudAvis.fxml"));
+        try {
+            Parent root = loader.load();
+            table.getScene().setRoot(root);
+        } catch (IOException e) {
+        }
+        });
+         
         
         table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Reservation>() {
             @Override
@@ -133,16 +164,38 @@ public class CrudReservationController implements Initializable {
         col_idR.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("idR"));
         col_date_debut.setCellValueFactory(new PropertyValueFactory<Reservation, String>("datedebut"));
         col_date_fin.setCellValueFactory(new PropertyValueFactory<Reservation, String>("datefin"));
+        col_voiture.setCellValueFactory(new PropertyValueFactory<Reservation, String>("voiture"));
         col_nom.setCellValueFactory(new PropertyValueFactory<Reservation, String>("nom"));
         col_prenom.setCellValueFactory(new PropertyValueFactory<Reservation, String>("prenom"));
         col_email.setCellValueFactory(new PropertyValueFactory<Reservation, String>("email"));
         col_numero.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("numtel"));
 
     }
+    //meth loadcars bch timporti mn base donnée okhra
+    private void loadCarModels() {
+        ServiceReservation sa = new ServiceReservation();
+        List<String> carModels = sa.getCarModels(); // Assuming you have a method to get car models
+
+        if (carModels != null) {
+            ObservableList<String> carModelList = FXCollections.observableArrayList(carModels);
+            cb_carmodel.setItems(carModelList);
+            cb_carmodel.getSelectionModel().select(0);
+             cb_carmodel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+    if (newValue != null) {
+        selectedCarModel = newValue;
+    }
+            
+        });
+    }
+    }
+
+    // ...
+
 
     private void setDataIntoFields(Reservation r) {
         dp_debut.setValue(new Date(r.getDatedebut().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         dp_fin.setValue(new Date(r.getDatefin().getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        cb_carmodel.setValue(r.getVoiture());
         et_nom.setText(r.getNom());
         et_prenom.setText(r.getPrenom());
         et_email.setText(r.getEmail());
@@ -176,6 +229,7 @@ public class CrudReservationController implements Initializable {
                     et_numero.setText(null);
                     dp_debut.setValue(null);
                     dp_fin.setValue(null);
+                    cb_carmodel.setValue(selectedCarModel);
                     showReservations();
                 } else {
                     Alert alertz = new Alert(Alert.AlertType.ERROR);
@@ -207,6 +261,7 @@ public class CrudReservationController implements Initializable {
                 String nom = et_nom.getText();
                 String prenom = et_prenom.getText();
                 String email = et_email.getText();
+                String voiture = cb_carmodel.getValue();
                 String numero = et_numero.getText();
                 LocalDate datedebut = dp_debut.getValue();
                 LocalDate datefin = dp_fin.getValue();
@@ -229,6 +284,7 @@ public class CrudReservationController implements Initializable {
                     res.setDatedebut(java.sql.Date.valueOf(datedebut));
                     res.setDatefin(java.sql.Date.valueOf(datefin));
                     res.setEmail(email);
+                    res.setVoiture(voiture);
                     res.setNom(nom);
                     res.setPrenom(prenom);
                     res.setNumtel(Integer.parseInt(numero));
@@ -248,6 +304,7 @@ public class CrudReservationController implements Initializable {
                             et_numero.setText(null);
                             dp_debut.setValue(null);
                             dp_fin.setValue(null);
+                            cb_carmodel.setValue(null);
                             showReservations();
 
                         }
@@ -274,6 +331,7 @@ public class CrudReservationController implements Initializable {
 
         String nom = et_nom.getText();
         String prenom = et_prenom.getText();
+        String voiture= cb_carmodel.getValue();
         String email = et_email.getText();
         String numero = et_numero.getText();
         LocalDate datedebut = dp_debut.getValue();
@@ -297,6 +355,7 @@ public class CrudReservationController implements Initializable {
             res.setDatedebut(java.sql.Date.valueOf(datedebut));
             res.setDatefin(java.sql.Date.valueOf(datefin));
             res.setEmail(email);
+            res.setVoiture(voiture);
             res.setNom(nom);
             res.setPrenom(prenom);
             res.setNumtel(Integer.parseInt(numero));
@@ -306,7 +365,7 @@ public class CrudReservationController implements Initializable {
                 alert.initStyle(StageStyle.UTILITY);
                 alert.setTitle("Success");
                 alert.setHeaderText(null);
-                alert.setContentText("Reservation a été ajoutée");
+                alert.setContentText("Reservation a été ajoutée et email envoyé");
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK) // alert is exited, no button has been pressed.
                 {
